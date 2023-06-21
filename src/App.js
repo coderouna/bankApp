@@ -1,13 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-//browserrouter 
-
-
 import Home from "./components/Home";
-import Hello from "./components/Hello";
-import Debits from "./components/Debits";
-import Credit from "./components/Credit"
 import UserProfile from "./components/UserProfile";
 
 function App() {
@@ -73,9 +67,6 @@ function App() {
         setSavedCredits([...savedCredits, {formCredit, creditDesc, today}]); //shallow copy of state, dont want to mutate it directly, 
                                                         //spread current state in array and add value at end (formCredit)
                                                         //...savedCredits copying the array over and adds formCredit into copy
-        // Clear the form after submission
-        setAddAmount("");
-        setCreditDesc("");
       }
 
       function handleCreditDesc(event) { //event handler 
@@ -92,20 +83,13 @@ function App() {
       function handleGivenDebit(event) {
         setBalance(balance => balance - Number(debitAmount));
         setSavedDebits([...savedDebits, {formDebit, debitDesc, today}]);
-
-        // Clear the form after submission
-          setDebitAmount("");
-          setDebitDesc("");
       }
 
       function handleDebitDesc(event) { //event handler 
         setDebitDesc(event.target.value); //setting user's input to addAmount
       }
 
-      function fetchHistory() {
-        
-      }
-      
+
   return (
     <Router>
       <div className="App">
@@ -116,7 +100,7 @@ function App() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/userProfile">UserProfile</Link>
+              <Link to="/userProfile">User Profile</Link>
             </li>
           </ul>
         </nav>
@@ -135,7 +119,7 @@ function App() {
                                         handleCredit = {handleCredit} handleGivenCredit = {handleGivenCredit}
                                         handleDebit = {handleDebit} handleGivenDebit = {handleGivenDebit}
                                         handleCreditDesc = {handleCreditDesc} handleDebitDesc = {handleDebitDesc} 
-                                        fetchHistory={fetchHistory}/>} />
+                                        savedDebits={savedDebits} savedCredits={savedCredits}/>} />
         </Routes>
       </div>
     </Router>
@@ -143,36 +127,3 @@ function App() {
 }
 
 export default App;
-
-/*
-import React, { useState } from 'react'
-
-const CreditForm = ({ handleSubmit, handleAmount, handleDesc }) => {
-    //history keeps track of all the information on each submit
-    const [history, setHistory] = useState([])
-
-    //local state only cares about the input
-    const [formCredit, setFormCredit] = useState(0)
-    const [formDesc, setFormDesc] = useState(0)
-
-    const handleChange = (e) => {
-
-    }
-
-    const handleSubmit = (event) => {
-        //submit sets history
-        //spread the old history (...history) and then add the info you need afterwards
-        setHistory([...history, { formCredit, formDesc }])
-    }
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <input onChange={handleDesc}></input>
-            <input onChange={handleAmount}></input>
-            <button type="submit">Submit</button>
-        </form>
-    )
-}
-
-export default CreditForm
-*/

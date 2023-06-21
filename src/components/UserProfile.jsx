@@ -25,12 +25,13 @@ function UserProfile(props) {
                                                         handleDebit = {props.handleDebit}
                                                         handleGivenDebit = {props.handleGivenDebit}
                                                         handleDebitDesc = {props.handleDebitDesc}
-                                                        fetchHistory={props.fetchHistory}/> } />
+                                                        savedDebits={props.savedDebits}/> } />
 
         <Route path="/credit" element={<Credit credit = {props.credit} balance ={props.balance} 
                                                 handleCredit = {props.handleCredit}
                                                 handleGivenCredit = {props.handleGivenCredit}
-                                                handleCreditDesc = {props.handleCreditDesc}/>} />
+                                                handleCreditDesc = {props.handleCreditDesc}
+                                                savedCredits={props.savedCredits}/>} />
       </Routes>
     </div>
   );
