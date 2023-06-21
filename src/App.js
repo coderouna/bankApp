@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 //browserrouter 
 
 
 import Home from "./components/Home";
+import Hello from "./components/Hello";
 import Debits from "./components/Debits";
 import Credit from "./components/Credit"
 import UserProfile from "./components/UserProfile";
@@ -12,7 +14,17 @@ function App() {
     const [debit, setDebit] = useState(0);
     const [credit, setCredit] = useState(0);
     const [balance, setBalance] = useState(0);
-
+    const [addAmount, setAddAmount] = useState(0); //addAmount is what user types in: amount that will be added 
+    const [debitAmount, setDebitAmount] = useState(0); 
+    const [savedDebits, setSavedDebits] = useState([]); //we want to store our previous debit transactions here 
+    const [savedCredits, setSavedCredits] = useState([]);
+    const [formCredit, setFormCredit] = useState(0); //keep track of number in form  
+    const [creditDesc, setCreditDesc] = useState("");
+    const [formDebit, setFormDebit] = useState(0); //keep track of number in form  
+    const [debitDesc, setDebitDesc] = useState("");
+    const date = new Date();
+    const today = date.toLocaleDateString();
+//pass down necessary props  to userprofile 
 
     useEffect(() => {
         async function loadCredit() {
@@ -44,17 +56,56 @@ function App() {
         loadDebit();
       }, []);
 
-      // useEffect(() => {
-      //     setBalance(credit - debit);
-      // }, [credit, debit]
-      // );
+      useEffect(() => {
+        setBalance(credit - debit);
+      }, [credit, debit]
+      );
 
-      function calcBalance(credit, debit){
-        return credit -  debit;
+      console.log(savedCredits);
+      function handleCredit(event) { //event handler 
+        setAddAmount(event.target.value); //setting user's input to addAmount
+        setFormCredit(event.target.value); 
       }
 
-      const updateBalance = calcBalance(credit, debit);
+       // function to change the credit value 
+      function handleGivenCredit(event) {
+        setBalance(balance => balance + Number(addAmount)); //casts the string to a Number 
+        setSavedCredits([...savedCredits, {formCredit, creditDesc, today}]); //shallow copy of state, dont want to mutate it directly, 
+                                                        //spread current state in array and add value at end (formCredit)
+                                                        //...savedCredits copying the array over and adds formCredit into copy
+        // Clear the form after submission
+        setAddAmount("");
+        setCreditDesc("");
+      }
 
+      function handleCreditDesc(event) { //event handler 
+        setCreditDesc(event.target.value); //setting user's input to addAmount
+      }
+
+      function handleDebit(event) {
+        setDebitAmount(event.target.value);
+        setFormDebit(event.target.value);
+      }
+    
+      //actually update the debit amount 12500 
+      console.log(savedDebits);
+      function handleGivenDebit(event) {
+        setBalance(balance => balance - Number(debitAmount));
+        setSavedDebits([...savedDebits, {formDebit, debitDesc, today}]);
+
+        // Clear the form after submission
+          setDebitAmount("");
+          setDebitDesc("");
+      }
+
+      function handleDebitDesc(event) { //event handler 
+        setDebitDesc(event.target.value); //setting user's input to addAmount
+      }
+
+      function fetchHistory() {
+        
+      }
+      
   return (
     <Router>
       <div className="App">
@@ -71,11 +122,20 @@ function App() {
         </nav>
 
         {/* Routes - this is whats loaded into the page: goes in highest point of application , or can be a separate file 
-        any nested routes need to have wildcard at the end */}
-        
+        any nested routes need to have wildcard at the end 
+        three props in hello component, credit and debit = whatever its equal to inApp component, name is set to hello, 
+        first we need to pass these values as props to the userprofile bc its linked to both debit and credit, we dont 
+        have direct access to it but userProfile does*/}
+        {/* <Hello name="hello" credit = {credit} debit = {debit}/> */}
+
+
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/userProfile/*" element={<UserProfile balance={balance}/>} />
+          <Route path="/userProfile/*" element={<UserProfile debit = {debit} credit = {credit}  balance = {balance} 
+                                        handleCredit = {handleCredit} handleGivenCredit = {handleGivenCredit}
+                                        handleDebit = {handleDebit} handleGivenDebit = {handleGivenDebit}
+                                        handleCreditDesc = {handleCreditDesc} handleDebitDesc = {handleDebitDesc} 
+                                        fetchHistory={fetchHistory}/>} />
         </Routes>
       </div>
     </Router>
@@ -83,3 +143,36 @@ function App() {
 }
 
 export default App;
+
+/*
+import React, { useState } from 'react'
+
+const CreditForm = ({ handleSubmit, handleAmount, handleDesc }) => {
+    //history keeps track of all the information on each submit
+    const [history, setHistory] = useState([])
+
+    //local state only cares about the input
+    const [formCredit, setFormCredit] = useState(0)
+    const [formDesc, setFormDesc] = useState(0)
+
+    const handleChange = (e) => {
+
+    }
+
+    const handleSubmit = (event) => {
+        //submit sets history
+        //spread the old history (...history) and then add the info you need afterwards
+        setHistory([...history, { formCredit, formDesc }])
+    }
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input onChange={handleDesc}></input>
+            <input onChange={handleAmount}></input>
+            <button type="submit">Submit</button>
+        </form>
+    )
+}
+
+export default CreditForm
+*/

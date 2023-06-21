@@ -1,20 +1,20 @@
-import React from "react";
-import {useState, useEffect} from "react";
-import Debits from "./Debits";
-import Credit from "./Credit";
+// import React from "react";
+// import {useState, useEffect} from "react";
+// import Debits from "./Debits";
+// import Credit from "./Credit";
 
 
-const AccountBalance = (props) => {
+// const AccountBalance = (props) => {
 
-    //console.log("props working " + props.AccountBalance);
-    return (
-       <div>
-            <h1>{props.AccountBalance}</h1>
-        </div> 
-    )
+//     //console.log("props working " + props.AccountBalance);
+//     return (
+//        <div>
+//             <h1>{props.AccountBalance}</h1>
+//         </div> 
+//     )
     
 
-}
+// }
 // function AccountBalance(){
 //     // console.log("LINE 17 ACCOUNT BALANCE" + props.yourDebit); //12500
 //     // console.log("LINE 18 ACCOUNT BALANCE" +props.yourCredit); //undefined
@@ -72,7 +72,7 @@ const AccountBalance = (props) => {
 //     )
 // }
 
-export default AccountBalance;
+// export default AccountBalance;
 
 //account balance should be parent, 
 //credit is child of account baance, and so is debit

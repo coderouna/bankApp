@@ -7,7 +7,7 @@ import Credit from "./Credit";
 function UserProfile(props) {
   return (
     <div>
-      <h2>User Profile</h2>
+      <h2>Your Profile:</h2>
 
       <nav>
         <ul>
@@ -21,8 +21,16 @@ function UserProfile(props) {
       </nav>
 
       <Routes>
-        <Route path="/debits" element={<Debits />} />
-        <Route path="/credit" element={<Credit />} />
+        <Route path="/debits" element={<Debits debit = {props.debit} balance ={props.balance}
+                                                        handleDebit = {props.handleDebit}
+                                                        handleGivenDebit = {props.handleGivenDebit}
+                                                        handleDebitDesc = {props.handleDebitDesc}
+                                                        fetchHistory={props.fetchHistory}/> } />
+
+        <Route path="/credit" element={<Credit credit = {props.credit} balance ={props.balance} 
+                                                handleCredit = {props.handleCredit}
+                                                handleGivenCredit = {props.handleGivenCredit}
+                                                handleCreditDesc = {props.handleCreditDesc}/>} />
       </Routes>
     </div>
   );
