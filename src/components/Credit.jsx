@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AccountBalance from "./AccountBalance";
 
 //credit adds 
 function Credit(props) {
@@ -15,7 +14,7 @@ function Credit(props) {
     <div>
       <h1>Credit</h1>
 
-      <h4>Current Balance</h4>
+      <h2>Current Balance</h2>
       <p>${props.balance} </p>
       
     <form id="form">
