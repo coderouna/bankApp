@@ -13,7 +13,7 @@ function App() {
     const [debitAmount, setDebitAmount] = useState(0); 
     const [savedDebits, setSavedDebits] = useState([]); //we want to store our previous debit transactions here 
     const [savedCredits, setSavedCredits] = useState([]);
-    const [formCredit, setFormCredit] = useState(0); //keep track of number in form  
+    const [formCredit, setFormCredit] = useState(0); //keep track of number in form //amoutn of credi t
     const [creditDesc, setCreditDesc] = useState("");
     const [formDebit, setFormDebit] = useState(0); //keep track of number in form  
     const [debitDesc, setDebitDesc] = useState("");
@@ -58,7 +58,7 @@ function App() {
 
       console.log(savedCredits);
       function handleCredit(event) { //event handler 
-        setAddAmount(event.target.value); //setting user's input to addAmount
+        setAddAmount(event.target.value); //setting user's input to addAmount (for credit)
         setFormCredit(event.target.value); 
       }
 

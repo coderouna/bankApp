@@ -34,7 +34,6 @@ function Debits(props) {
         <button onClick={event => {
           			props.handleGivenDebit();
           			clear();
-                //fetchHistory();
         		}} id="submit">
             Submit
         </button>
