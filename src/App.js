@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
+import Hello from "./components/Hello";
 import UserProfile from "./components/UserProfile";
 
 function App() {
@@ -110,7 +111,7 @@ function App() {
         three props in hello component, credit and debit = whatever its equal to inApp component, name is set to hello, 
         first we need to pass these values as props to the userprofile bc its linked to both debit and credit, we dont 
         have direct access to it but userProfile does*/}
-        {/* <Hello name="hello" credit = {credit} debit = {debit}/> */}
+        {/* <Hello name="hello" credit = {credit} debit = {debit} name2 = "aminata" /> */}
 
 
         <Routes>

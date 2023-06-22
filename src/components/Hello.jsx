@@ -10,10 +10,13 @@ const Hello = (props) => {
                 {props.name};
                 </p>
                 <p>
-                {props.credit};
+                {props.credit}; 
                 </p>
                 <p>
-                {props.debit};
+                {props.debit}; 
+                </p>
+                <p>
+                {props.name2}; 
                 </p>
             </div>
         </div>

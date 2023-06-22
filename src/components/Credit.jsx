@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Credit(props) {
 
   //clear form 
-  function newFunction(){
+  function clear(){
     let element = document.getElementById("form");
     element.reset()
   }
@@ -30,7 +30,7 @@ function Credit(props) {
 
         <button onClick={event => {
           			props.handleGivenCredit();
-          			newFunction();
+          			clear();
         		}} id="submit">
             Submit
         </button>
@@ -42,7 +42,7 @@ function Credit(props) {
           {props.savedCredits.map((credit, index) => (
             <li key={index}>
               <p>Credit Amount: {credit.formCredit}</p>
-              <p>Description: {credit.CceditDesc}</p>
+              <p>Description: {credit.creditDesc}</p>
               <p>Date: {credit.today}</p>
             </li>
           ))}

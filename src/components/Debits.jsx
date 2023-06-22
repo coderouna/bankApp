@@ -9,7 +9,7 @@ function Debits(props) {
   // const data = props.savedDebits;
   // console.log(data);
 
-  function newFunction(){
+  function clear(){
     let element = document.getElementById("form");
     element.reset()
   }
@@ -19,7 +19,7 @@ function Debits(props) {
       <h1>Debits</h1>
 
       <h2>Current Balance</h2>
-      <p>${props.balance} </p>
+      <p>${props.balance}</p>
 
       <form id="form">
       Debit Amount: <input type = "text" id = "addDebits" value={props.debitAmount}
@@ -33,7 +33,7 @@ function Debits(props) {
         <p></p>
         <button onClick={event => {
           			props.handleGivenDebit();
-          			newFunction();
+          			clear();
                 //fetchHistory();
         		}} id="submit">
             Submit
